@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Task manager UI</title>
-  <link rel="stylesheet" href="style.css">
+  <title> - Task manager UI</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 <body>
@@ -15,21 +16,36 @@
   </div>
   <div class="main">
     <div class="nav">
-      <div class="searchbox">
+      <!-- <div class="searchbox">
         <div><i class="fa fa-search"></i>
           <input type="search" placeholder="Search"/>
         </div>
-      </div>
+      </div> -->
       <div class="menu">
-        <div class="title">Navigation</div>
+        <div class="title">folders</div>
         <ul>
-          <li> <i class="fa fa-home"></i>Home</li>
-          <li><i class="fa fa-signal"></i>Activity</li>
+            <?php
+            foreach($folders as $folder):?>
+          <li> 
+          <a style="text-decoration: none;" href="?folder_id=<?= $folder->id ?>"><i class="fa fa-folder"></i><?= $folder->name ?></a>
+          <a style="text-decoration: none;float:right;color:red;padding: right 20px;" href="?delete_folder=<?= $folder->id ?>">!!!</a>
+          </li>
+          <?php endforeach; ?>
+          <li class="active"> <i class="fa fa-folder"></i>curent folder</li>
+          <!-- <li><i class="fa fa-signal"></i>Activity</li>
           <li class="active"> <i class="fa fa-tasks"></i>Manage Tasks</li>
-          <li> <i class="fa fa-envelope"></i>Messages</li>
+          <li> <i class="fa fa-envelope"></i>Messages</li> -->
+          <div>
+          <input style="width: 65%;margin-left: 3%;" type="text" id="NewFolderInput" placeholder="Add New Folder"/>
+          <button class="btn" id="New_Folder_Btn">+</button>
+        </div>
         </ul>
       </div>
+    
     </div>
+
+    <div>
+
     <div class="view">
       <div class="viewHeader">
         <div class="title">Manage Tasks</div>
@@ -39,15 +55,18 @@
           <div class="button inverz"><i class="fa fa-trash-o"></i></div>
         </div>
       </div>
+
       <div class="content">
         <div class="list">
           <div class="title">Today</div>
           <ul>
-            <li class="checked"><i class="fa fa-check-square-o"></i><span>Update team page</span>
+            <?php foreach($tasks as $task): ?>
+            <li class="checked"><i class="fa fa-check-square-o"></i><span><?= $task->title?></span>
               <div class="info">
-                <div class="button green">In progress</div><span>Complete by 25/04/2014</span>
+                <div class="button green">In progress</div><span><?= $task->created_at ?></span>
               </div>
             </li>
+            <?php endforeach; ?>
             <li><i class="fa fa-square-o"></i><span>Design a new logo</span>
               <div class="info">
                 <div class="button">Pending</div><span>Complete by 10/04/2014</span>
@@ -71,7 +90,7 @@
   </div>
 </div>
 <!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+  <script src='/assets/js//script.js'></script><script  src="/assets/js/script.js"></script>
 
 </body>
 </html>

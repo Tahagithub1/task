@@ -1,0 +1,21 @@
+{
+    "name": "robot/task-manager",
+    "description": "A simple todo List project (whit Ajax,php and mysql)",
+    "type": "progect",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Robot\\TaskManager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tahagithub1",
+            "email": "mogevaraluffyy@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "hekmatinasser/verta": "^8.3"
+    }
+}

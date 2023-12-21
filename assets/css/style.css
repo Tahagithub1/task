@@ -12,6 +12,7 @@ body {
   font-smoothing: antialiased;
 }
 
+
 .page {
   position: absolute;
   width: 80%;
@@ -133,6 +134,7 @@ body {
   border-radius: 4px;
   transition: 0.25s all;
 }
+
 .main .nav .menu ul li.active {
   color: #79BC46;
 }
@@ -267,3 +269,24 @@ body {
 .clear {
   clear: both;
 }
+.btn{
+  padding: 3px 10px;
+  border-radius: 3px;
+  border: 1px solid white;
+
+}
+btn{
+  padding: 3px 10px;
+  border-radius: 3px;
+  border: 1px solid white;
+
+}
+/* .remove{
+  color: red !important;
+  float: right;
+  font-weight: 200;
+  padding-right: 5px;
+}
+a.remove:hover{
+  font-weight: 700;
+} */
