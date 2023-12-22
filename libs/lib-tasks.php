@@ -15,14 +15,14 @@ function DeleteFolder($folder_id){
    return $stmt->rowCount();
 }
 
-function addFolder($date)  {
+function addFolder($folder_name){
     global $pdo;
     $current_user_id = getCurrentUserId();
-    $sql="SELECT * FROM folders WHERE user_id = $current_user_id";
+    $sql="INSERT INTO folders (name,user_id) VALUES (:folder_name,:user_id);";
    $stmt = $pdo->prepare($sql);
-   $stmt->execute();
-   $record = $stmt->fetchAll(PDO::FETCH_OBJ);
-   return $record;
+   $stmt->execute([':folder_name'=>$folder_name,':user_id'=>$current_user_id]);
+   $stmt->rowCount();
+
 
 }
 

@@ -23,7 +23,7 @@
       </div> -->
       <div class="menu">
         <div class="title">folders</div>
-        <ul>
+        <ul class="folders-list">
             <?php
             foreach($folders as $folder):?>
           <li> 
@@ -34,12 +34,18 @@
           <li class="active"> <i class="fa fa-folder"></i>curent folder</li>
           <!-- <li><i class="fa fa-signal"></i>Activity</li>
           <li class="active"> <i class="fa fa-tasks"></i>Manage Tasks</li>
-          <li> <i class="fa fa-envelope"></i>Messages</li> -->
-          <div>
-          <input style="width: 65%;margin-left: 3%;" type="text" id="NewFolderInput" placeholder="Add New Folder"/>
-          <button class="btn" id="New_Folder_Btn">+</button>
-        </div>
+          <li> <i class="fa fa-envelope"></i>Messages</li> --> 
         </ul>
+        <div>
+  
+
+  <input style="width: 65%;margin-left: 3%;" type="text" id="addFolderInput" placeholder="Add New Folder"/>
+  
+  <button  class="btn clickable" id="addFolderBtn">+</button>
+
+
+
+</div>
       </div>
     
     </div>
@@ -90,7 +96,32 @@
   </div>
 </div>
 <!-- partial -->
-  <script src='/assets/js//script.js'></script><script  src="/assets/js/script.js"></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="/assets/js/script.js"></script>
+   <script>
+    $(document).ready(function(e){
 
+        $("#addFolderBtn").click(function(e){
+            var input = $('input#addFolderInput');
+            $.ajax({
+                url : "proccess/ajaxHandler.php",
+                method : "post",
+                data : {action: "addFolder",folderName: input.val()},
+                success : function(response){
+
+                   if(response == '1'){
+              
+                    $(' <li><a style="text-decoration: none;" href="><i class="fa fa-folder"></i>'+input.val()+'</a></li>').appendTo('ul.folders-list');
+                 
+                  }else{
+
+                    alert(response);
+
+                   }
+                    
+                }
+            });
+        });
+    });
+   </script>
 </body>
 </html>
