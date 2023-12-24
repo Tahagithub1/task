@@ -28,6 +28,16 @@ switch($_POST['action']){
   
          break;
          case "addTask":
+          var_dump($_POST);
+   
+          // if(!isset($_POST['folderName']) || strlen($_POST['folderName']) < 1 ){
+          //   echo "name folder 4";
+          //    die();
+           
+          // }else{
+          //   echo "folder sub";   
+          // }
+
             break;
 
         default:

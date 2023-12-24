@@ -138,6 +138,10 @@ body {
 .main .nav .menu ul li.active {
   color: #79BC46;
 }
+.main .nav .menu ul li.active a{
+  text-decoration: none;
+  color: #79BC46;
+}
 .main .nav .menu ul li:hover {
   background-color: #999;
 }

@@ -1,5 +1,8 @@
 
 <?php
+
+defined('BASE_PATH') OR die("Your Prmissen is Dnay");
+
 include "bootstrap/bootstrap-link.php";
 
 function RequestAjaxCheck() {
@@ -20,7 +23,11 @@ die();
 
 
 
-
+function dd($var)  {
+  echo "<pre style='color:red'>";
+  var_dump($var);
+  echo "</pre>";
+}
 
 
 
