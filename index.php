@@ -16,7 +16,8 @@ if(isset($_GET['delete_task'])&& is_numeric($_GET['delete_task'])){
 
 $folders = getFolder();
 $tasks = getTask();
-dd($tasks);
+///dd($tasks);
+
 //var_dump($tasks);
 //var_dump($folders);
 

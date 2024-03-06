@@ -18,7 +18,7 @@ switch($_POST['action']){
     case "addFolder":
    // var_dump($_POST);
    if(!isset($_POST['folderName']) || strlen($_POST['folderName']) < 3 ){
-    echo "name folder 4";
+    echo "The name of the directory must be more than 3";
      die();
    
   }else{
@@ -28,16 +28,22 @@ switch($_POST['action']){
   
          break;
          case "addTask":
-          var_dump($_POST);
-   
-          // if(!isset($_POST['folderName']) || strlen($_POST['folderName']) < 1 ){
-          //   echo "name folder 4";
-          //    die();
-           
-          // }else{
-          //   echo "folder sub";   
-          // }
+       var_dump($_POST);
+          $folderId = $_POST['folderId'];
+          $taskTitle = $_POST['taskTitle'];
+          
+          if(!isset($folderId) || empty($folderId)){
+            echo "pleease select a directory";
+             die();
+          }
+          if(!isset($taskTitle) || strlen($taskTitle) < 2 ){
+            echo "The name of the task must be more than 2";
+             die();
+          }
+          
 
+         
+          echo addTask($taskTitle,$folderId);
             break;
 
         default:

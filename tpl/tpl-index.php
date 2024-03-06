@@ -35,27 +35,24 @@
           <li class="<?= isset($_GET['folder_id']) ? '' : 'active' ; ?>"><a style="text-decoration: none;" href="?folder_id ?>"> <i class="fa fa-folder"></i> All Folder</a></li> 
           </li>
      
-            <?php foreach($folders as $folder):?>
+          <?php foreach($folders as $folder):?>
+
           <li class="active"> 
           <li class="<?= ($_GET['folder_id'] == $folder->id) ? 'active' : '' ; ?>">
           <a style="text-decoration: none;" href="?folder_id=<?= $folder->id ?>"><i class="fa fa-folder"></i><?= $folder->name ?></a>
           <a style="text-decoration: none;float:right;color:red;padding: right 20px;" href="?delete_folder=<?= $folder->id ?>" onclick="return confirm('Are You sure delete for folder')" >!!!</a>
           </li>
+          
           <?php endforeach; ?>
           <!-- <li><i class="fa fa-signal"></i>Activity</li>
           <li class="active"> <i class="fa fa-tasks"></i>Manage Tasks</li>
           <li> <i class="fa fa-envelope"></i>Messages</li> --> 
         </ul>
         <div>
-  
-
   <input style="width: 65%;margin-left: 3%;" type="text" id="addFolderInput" placeholder="Add New Folder"/>
   
   <button  class="btn clickable" id="addFolderBtn">+</button>
-
-
-
-</div>
+          </div>
       </div>
     
     </div>
@@ -78,10 +75,11 @@
           <div class="title">Today</div>
           <ul>
             <?php if(sizeof($tasks)):  ?>
+
             <?php foreach($tasks as $task): ?>
             <li class="<?= $task->is_done ? 'checked' : '' ; ?>">
-            <i class="fa <?= $task->is_done ? 'fa-check-square-o' : 'fa-square-o' ; ?> "></i>
-            <span><?= $task->title ?></span>
+            <i data-taskId="<?= $task->id ?>" class="isDone fa <?= $task->is_done ? 'fa-check-square-o' : 'fa-square-o' ; ?> "></i>
+            <span> <?= $task->title ?> </span>
               <div class="info">
                 <span><?= $task->created_at?></span>
                 <a class="remove" style="text-decoration: none;float:right;color:red;padding: right 20px;" href="?delete_task=<?= $task->id ?>" onclick="return confirm('Are You sure delete for task')" >!!!</a>
@@ -116,7 +114,7 @@
   </div>
 </div>
 <!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="/assets/js/script.js"></script>
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script src="/assets/js/script.js"></script>
    <script>
   
  $(document).ready(function(e){
@@ -144,7 +142,43 @@
 });
 
 
+$('#addTaskInput').on('keypress',function(e){
+  e.stopPropagation();
+  if(e.which == 13){
+    $.ajax({
+          url : "proccess/ajaxHandler.php",
+          method : "post",
+          data : {action: "addTask",folderId : <?php echo $_GET['folder_id']; ?> ,taskTitle: $('#addTaskInput').val()},
+          success : function(response){
+            alert(response);
+            if(response == '1'){
+              Location.reload();
+            }else{
 
+              alert(response);
+
+          }  
+        }
+    });  
+        }
+    });
+   
+
+
+
+// $(document).ready(function(b){
+//   $('#addTaskBtn').click(function(b){
+//     var input = $('input#addTaskInput');
+//     $.ajax({
+//       url : "proccess/ajaxHandler.php",
+//       method : "post",
+//       data : {action: "addTask",taskName: input.val()},
+//       success : function(response){
+//         alert(response);
+//       }
+//     });
+//   });
+// });
 
 
 

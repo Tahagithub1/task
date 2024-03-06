@@ -15,10 +15,8 @@ function RequestAjaxCheck() {
 
 
 function diePage($msg) {
-
 echo "<p class='alert alert-danger' >$msg</p>";
 die();
-
 }
 
 

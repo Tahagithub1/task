@@ -55,9 +55,19 @@ function DeleteTask($task_id){
 }
 
 
-function getTask()  {
+function addTask($taskTitle,$folderId){
     global $pdo;
-    
+    $current_user_id = getCurrentUserId();
+    $sql="INSERT INTO tasks (title,user_id,folder_id) VALUES (:title,:user_id,folder_id);";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':title'=>$taskTitle,':user_id'=>$current_user_id,':folder_id'=>$folderId]);
+    return $stmt->rowCount();
+}
+
+
+function getTask(){
+    global $pdo;
+
      $folder = $_GET['folder_id'] ?? null ;
      $folderCondition = '';
      if(isset($folder)and is_numeric($folder)){
@@ -67,23 +77,11 @@ function getTask()  {
 
     $current_user_id = getCurrentUserId();
     $sql="SELECT * FROM tasks WHERE user_id = $current_user_id $folderCondition";
-   $stmt = $pdo->prepare($sql);
-   $stmt->execute();
-   $record = $stmt->fetchAll(PDO::FETCH_OBJ);
-   return $record;
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $record = $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $record;
 }
-
-
-// function addTask($task_name){
-//     global $pdo;
-//     $current_user_id = getCurrentUserId();
-//     $sql="INSERT INTO tasks (title,user_id) VALUES (:title,:user_id);";
-//    $stmt = $pdo->prepare($sql);
-//    $stmt->execute([':title_name'=>$task_name,':user_id'=>$current_user_id]);
-//    $stmt->rowCount();
-
-// }
-
 
 
 
